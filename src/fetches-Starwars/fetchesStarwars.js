@@ -20,6 +20,4 @@ function darth() {
   
 }
 
-darth()
-
 //${document.getElementById("submit").value}
