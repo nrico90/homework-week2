@@ -6,37 +6,44 @@ let bigGroup = {
     "51 and older": []
 }
 
-function adult (person) {
-    if (person.age > 18) return person
-    else return false
-}
+function sortGroups(person) {
+    if (person.age <= 20) {
+        bigGroup["20 and yonger"].push(person)
+    }
+    else if ((person.age < 31) && (person.age > 20)) {
+        bigGroup["21 - 30"].push(person)
+    }
+    else if ((person.age < 41) && (person.age > 30)) {
+        bigGroup["31 - 40"].push(person)
+    }
+    else if ((person.age < 51) && (person.age > 40)) {
+        bigGroup["41 - 50"].push(person)
+    }
+    else if (person.age > 50) {
+        bigGroup["51 and older"].push(person)
+    }
+    // if (bigGroup["20 and yonger"] === 0) delete bigGroup["20 and yonger"]
+    // if (bigGroup["21 - 30"] === 0) delete bigGroup["21 - 30"]
+    // if (bigGroup["31 - 40"] === 0) delete bigGroup["31 - 40"]
+    // if (bigGroup["41 - 50"] === 0) delete bigGroup["41 - 50"]
+    // if (bigGroup["51 and older"] === 0) delete bigGroup["51 and older"]
 
-function sortGroups(people, person) {
-    
-}
+    return bigGroup
+  }
 
 function groupAdultsByAgeRange(people) {
-    if (!people) return ['']
+    if (people.length === 0) {
+      return {}  
+    }
+    else {
+        return people
+            .filter(function (person) {
+                    if (person.age >= 18) return person
+                    else return false
+              })
+            .reduce(sortGroups, {})
+    }
 }
-
-
-
-
-
-    // function adults (people) {
-    //     return 
-    // }
-    // function adults(people) {
-    //     people.filter(function(people) {
-    //         if ((people.age > 18) && (people.age <= 20)) {
-    //             groups.push({
-    //                 name: people.name,
-    //                 age: people.age
-    //             })
-    //         }
-    //     }
-    // }
-
 
 
 //const groupAdultsByAgeRange = require("./transform").groupAdultsByAgeRange
